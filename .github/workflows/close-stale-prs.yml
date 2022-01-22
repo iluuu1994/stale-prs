@@ -1,0 +1,21 @@
+name: Close stale PRs
+
+on:
+  schedule:
+    - cron: 0 0 * * *
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v4
+        with:
+          daysUntilClose: 0
+          daysUntilStale: 1
+          exemptLabels:
+            - RFC
+            - Waiting on Review
+          only: pulls
+          stale-pr-message: >
+            This PR is automatically being closed because there hasn't been any recent activity.
+            Feel free to reopen it when development continues.
